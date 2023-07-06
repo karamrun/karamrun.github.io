@@ -1,14 +1,369 @@
 <!DOCTYPE html>
 <html>
-<h2 style="color:purple;">  A couple facts about my university...</h2>
-<h3 style="color:red;"> I go to Rutgers-Newark!!!! </h3>
-<p style ="color:purple;"> Rutgers Newark (or RU-N) is part of the Rutgers System</p>
-<p style = "color:purple;"> The largest public research institution in NJ</p>
-<body> I am majoring in Computer Science, minoring in Math.</body>
+	
+<head>
+	<title>
+		
+	</title>
+</head>
+
+<body style="text-align:center;">
+	
+	<h1 style="color:green;">
+		Kara's Grocery Store
+	</h1>
+	
+	<h4>
+		Enjoy your Shopping 
+	</h4>
+
+	<?php
+
+   
+
+	
+		if(isset($_POST['button1'])) {
+			echo "You have purchased a banana ";
+      
+                       
+		}
+		if(isset($_POST['button2'])) {
+			echo "You have purchased grapes";
+		}
+                if(isset($_POST['button3'])) {
+			echo "You have purchased carrots ";
+		}
+		if(isset($_POST['button4'])) {
+			echo "You have purchased an onion";
+		}
+ 
+session_start();
+$me= array();
+ 
+// if counter is not set, set to zero
+if(!isset($_SESSION['counter'])) {
+    $_SESSION['counter'] = 0;
+}
+if(!isset($_SESSION['banana'])) {
+    $_SESSION['banana'] = 28;
+}
+if(!isset($_SESSION['grape'])) {
+    $_SESSION['grapes'] = 104;
+}
+if(!isset($_SESSION['carrot'])) {
+    $_SESSION['carrot'] = 87;
+}
+if(!isset($_SESSION['onion'])) {
+    $_SESSION['onion'] = 45;
+}
+if(!isset($_SESSION['oats'])) {
+    $_SESSION['oats'] = 100;
+}
+if(!isset($_SESSION['rice'])) {
+    $_SESSION['rice'] = 50;
+}
+if(!isset($_SESSION['beans'])) {
+    $_SESSION['beans'] = 25;
+}
+if(!isset($_SESSION['flour'])) {
+    $_SESSION['flour'] = 50;
+}
+if(!isset($_SESSION['pork'])) {
+    $_SESSION['oats'] = 60;
+}
+if(!isset($_SESSION['beef'])) {
+    $_SESSION['rice'] = 50;
+}
+if(!isset($_SESSION['chicken'])) {
+    $_SESSION['beans'] = 40;
+}
+if(!isset($_SESSION['salmon'])) {
+    $_SESSION['flour'] = 30;
+}
+if(!isset($_SESSION['bill'])) {
+     
+    $_SESSION['bill'] = $me;
+}
+
+
+
+
+
+
+// if button is pressed, increment counter
+if(isset($_POST['button'])) {
+    echo "Thank you for submitting your order";
+   $to = "karamurphy7@gmail.com";
+   $subject = "Order Received";
+   $txt = "You got an order!";
+   $headers = "From: webmaster@example.com" . "\r\n" .
+
+mail($to,$subject,$txt,$headers);
+ 
+}
+
+if(isset($_POST['button1'])) {
+    $_SESSION['counter']+=2.55;
+    $_SESSION['banana']-=1;
+    array_push($_SESSION['bill'],'banana');
+   
+}
+if(isset($_POST['button2'])) {
+    $_SESSION['counter']+=4.22;
+     $_SESSION['grapes']-=1;
+   array_push($_SESSION['bill'],'grapes');
+
+}  
+if(isset($_POST['button3'])) {
+    $_SESSION['counter']+=2.02;
+    $_SESSION['carrot']-=1;
+  array_push($_SESSION['bill'],'carrots');
+} 
+if(isset($_POST['button4'])) {
+    $_SESSION['counter']+=1;
+    $_SESSION['onion']-=1;
+ array_push($_SESSION['bill'],'onion');
+}
+if(isset($_POST['button5'])) {
+    $_SESSION['counter']+=3.01;
+    $_SESSION['oats']-=1;
+ array_push($_SESSION['bill'],'oats');
+
+} 
+if(isset($_POST['button6'])) {
+    $_SESSION['counter']+=2.88;
+    $_SESSION['rice']-=1;
+ array_push($_SESSION['bill'],'rice');
+
+}        
+if(isset($_POST['button7'])) {
+    $_SESSION['counter']+=0.67;
+    $_SESSION['beans']-=1;
+ array_push($_SESSION['bill'],'beans');
+}
+if(isset($_POST['button8'])) {
+    $_SESSION['counter']+=1.60;
+    $_SESSION['flour']-=1;
+ array_push($_SESSION['bill'],'flour');
+}
+if(isset($_POST['button9'])) {
+    $_SESSION['counter']+=4.55;
+    $_SESSION['pork']-=1;
+ array_push($_SESSION['bill'],'pork');
+
+} 
+if(isset($_POST['button10'])) {
+    $_SESSION['counter']+=7.88;
+    $_SESSION['beef']-=1;
+ array_push($_SESSION['bill'],'beef');
+}        
+if(isset($_POST['button11'])) {
+    $_SESSION['counter']+=4.32;
+    $_SESSION['chicken']-=1;
+ array_push($_SESSION['bill'],'chicken');
+}
+if(isset($_POST['button12'])) {
+    $_SESSION['counter']+=11.60;
+    $_SESSION['salmon']-=1;
+ array_push($_SESSION['bill'],'salmon');
+}   
+// reset counter
+if(isset($_POST['reset'])) {
+    $_SESSION['counter'] = 0;
+    $_SESSION['banana']= 28;
+    $_SESSION['grapes'] = 104;
+    $_SESSION['carrot']= 87;
+    $_SESSION['onion']= 45;  
+    $_SESSION['oats']= 100;
+    $_SESSION['rice'] = 50;
+    $_SESSION['beans']= 25;
+    $_SESSION['flour']= 50;
+    $_SESSION['pork']= 100;
+    $_SESSION['beef'] = 50;
+    $_SESSION['chicken']= 25;
+    $_SESSION['salmon']= 50;
+    unset($_SESSION['bill']);    
+   
+  
+}
+
+?>
+
+<form method="POST">
+    <input type="hidden" name="counter" value="<?php echo $_SESSION['counter']; ?>" />
+    <input type="submit" name="button" value="Submit my Order" />
+    <input type="submit" name="reset" value="Cancel Order" />
+    <br/><?php echo "Bill so Far is equal to $" , $_SESSION['counter']; ?>
 <br>
-<body> I am a rising senior, graduating (fingers crossed) in spring
+<br>
+
+</form>
+
+
+
+        <h2> PRODUCE SECTION </h2> 
+	
+	<form method="post">
+		<input type="submit" name="button1"
+				value=“Banana”/>
+<?php echo "UNITS OF BANANA:" , $_SESSION['banana']; ?>
 <br> 
-<body> After this summer, I will have 20 credits left to finish!</body>
+
+                <br>
+        
+                 "price is $2.55"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button2"
+				value=“Grape”/>
+<?php echo "UNITS OF GRAPES: " , $_SESSION['grapes']; ?>
+             <br>
+        
+                 "price is $4.22"; 
+               <br>
+               <br>
+
+               <input type="submit" name="button3"
+				value=“Carrot”/>
+<?php echo "UNITS OF CARROT:" , $_SESSION['carrot']; ?>
+              <br>
+        
+                 "price is $2.02"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button4"
+				value=“Onion”/>
+<?php echo "UNITS OF ONION " , $_SESSION['onion']; ?>
+ <br>
+        
+                 "price is $1"; 
+	</form>
+
+   
+
+       <br>
+      <br>
+
+     <?php
+      
+	
+		if(isset($_POST['button5'])) {
+			echo "You have purchased oats ";
+                        
+		}
+		if(isset($_POST['button6'])) {
+			echo "You have purchased rice";
+		}
+                if(isset($_POST['button7'])) {
+			echo "You have purchased beans ";
+		}
+		if(isset($_POST['button8'])) {
+			echo "You have purchased flour";
+		}
+	?>
+
+        <h2> DRY SECTION </h2> 
+	
+	<form method="post">
+		<input type="submit" name="button5"
+				value=“Oats”/>
+<?php echo "UNITS OF OATS " , $_SESSION['oats']; ?>
+  <br>   
+ "price is $3.01"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button6"
+				value=“Rice”/>
+<?php echo "UNITS OF RICE " , $_SESSION['rice']; ?>
+ <br>   
+ "price is $2.88"; 
+               <br>
+               <br>
+
+               <input type="submit" name="button7"
+				value=“Beans”/>
+<?php echo "UNITS OF BEANS " , $_SESSION['beans']; ?>
 <br>
-  <p> Currently Taking Software Engineering and Operating Systems</p>
+ "price is $0.67"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button8"
+				value=“Flour”/>
+<?php echo "UNITS OF FLOUR " , $_SESSION['flour']; ?>
+<br>
+ "price is $1.60"; 
+	</form>
+<?php
+	
+		if(isset($_POST['button9'])) {
+			echo "You have purchased pork ";
+		}
+		if(isset($_POST['button10'])) {
+			echo "You have purchased beef";
+		}
+                if(isset($_POST['button11'])) {
+			echo "You have purchased chicken ";
+		}
+		if(isset($_POST['button12'])) {
+			echo "You have purchased salmon";
+		}
+	?>
+
+        <h2> MEAT </h2> 
+	
+	<form method="post">
+		<input type="submit" name="button9"
+				value=“Pork”/>
+<?php echo "UNITS OF PORK " , $_SESSION['pork']; ?>
+<br>
+ "price is $4.55"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button10"
+				value=“Beef”/>
+<?php echo "UNITS OF BEEF " , $_SESSION['beef']; ?>
+<br>
+ "price is $7.88"; 
+               <br>
+               <br>
+
+               <input type="submit" name="button11"
+				value=“Chicken”/>
+<?php echo "UNITS OF CHICKEN " , $_SESSION['chicken']; ?>
+<br>
+ "price is $4.32"; 
+                <br>
+                <br>
+		
+		<input type="submit" name="button12"
+				value=“Salmon”/>
+<?php echo "UNITS OF SALMON " , $_SESSION['salmon']; ?>
+<br>
+ "price is $11.60"; 
+	</form>
+
+<?php 
+function prettyPrint($a) {
+    echo '<pre>'.print_r($a,1).'</pre>';
+}
+
+echo "BILL:" , prettyPrint($_SESSION['bill']); ?>
+<?php
+echo "===========================================================";?>
+<br>
+<?php
+echo "TOTAL DUE  ", $_SESSION['counter']; 
+
+?>
+<br>
+
+
+
+</body>
+
 </html>
